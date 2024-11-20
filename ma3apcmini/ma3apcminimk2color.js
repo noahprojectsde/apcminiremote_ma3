@@ -1,4 +1,4 @@
-//ma3apcminimk2color v1.0.5 by ArtGateOne
+//apcminiremote_ma3
 
 var easymidi = require('easymidi');
 var osc = require('osc')
@@ -79,13 +79,13 @@ function sleep(ms) {
 async function sendNotes() {
   for (let x = 0; x < 16; x++) {
     output.send('noteon', { note: x, velocity: 3, channel: x });
-    await sleep(100); // opóźnienie 500 ms między wysłaniem nut
+    await sleep(100); 
   }
 }
 
 sendNotes();
 
-// Create an osc.js UDP Port listening on port 8000.
+// Create an osc.js UDP Port listening on port 8001.
 var udpPort = new osc.UDPPort({
   localAddress: localip,
   localPort: localport,
@@ -209,7 +209,7 @@ input.on('cc', function (msg) {//Fader send OSC
 });
 
 
-input.on('noteon', function (msg) {//recive midi keys and send to osc
+input.on('noteon', function (msg) {//receive midi keys and send to osc
 
   if (msg.note >= 0 && msg.note <= 7) {
     udpPort.send({ address: "/Key" + (msg.note + 101), args: [{ type: "i", value: 1 }] }, remoteip, remoteport);
@@ -277,7 +277,7 @@ input.on('noteon', function (msg) {//recive midi keys and send to osc
   }
 });
 
-input.on('noteoff', function (msg) {//recive midi keys and send to osc
+input.on('noteoff', function (msg) {//receive midi keys and send to osc
 
   if (msg.note >= 0 && msg.note <= 7) {
     udpPort.send({ address: "/Key" + (msg.note + 101), args: [{ type: "i", value: 0 }] }, remoteip, remoteport);
@@ -368,7 +368,7 @@ function light_fader(note, velocity) {
   return;
 }
 
-// Mapa kolorów do velocity
+
 const colorToVelocity = {
   '#000000': 0, '#1E1E1E': 1, '#7F7F7F': 2, '#FFFFFF': 3,
   '#FF4C4C': 4, '#FF0000': 5, '#590000': 6, '#190000': 7,
@@ -404,7 +404,7 @@ const colorToVelocity = {
   '#B9B000': 124, '#3F3100': 125, '#B35F00': 126, '#4B1502': 127
 };
 
-// Funkcja konwertująca kolor z heksadecymalnego na wartości RGB z walidacją
+
 function hexToRgb(hex) {
   if (!/^#([0-9A-F]{3}){1,2}$/i.test(hex)) {
     throw new Error('Nieprawidłowy format koloru: ' + hex);
@@ -416,14 +416,14 @@ function hexToRgb(hex) {
   return { r, g, b };
 }
 
-// Funkcja obliczająca odległość Manhattan między dwoma kolorami RGB
+
 function colorDistanceManhattan(color1, color2) {
   return Math.abs(color1.r - color2.r) +
     Math.abs(color1.g - color2.g) +
     Math.abs(color1.b - color2.b);
 }
 
-// Funkcja zwracająca velocity dla najbardziej zbliżonego koloru
+
 function getClosestVelocity(color) {
   let targetRgb = hexToRgb(color);
   let closestColor = null;
