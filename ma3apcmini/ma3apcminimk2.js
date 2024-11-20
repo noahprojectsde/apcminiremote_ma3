@@ -1,4 +1,4 @@
-//ma3apcminimk2 v1.0.5 by ArtGateOne
+//apcminiremote_ma3
 
 var easymidi = require('easymidi');
 var osc = require("osc")
