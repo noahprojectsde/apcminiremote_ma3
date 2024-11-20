@@ -79,13 +79,13 @@ function sleep(ms) {
 async function sendNotes() {
   for (let x = 0; x < 16; x++) {
     output.send('noteon', { note: x, velocity: 3, channel: x });
-    await sleep(100); // opóźnienie 500 ms między wysłaniem nut
+    await sleep(100); 
   }
 }
 
 sendNotes();
 
-// Create an osc.js UDP Port listening on port 8000.
+// Create an osc.js UDP Port listening on port 8001.
 var udpPort = new osc.UDPPort({
   localAddress: localip,
   localPort: localport,
@@ -197,7 +197,7 @@ input.on('cc', function (msg) {//Fader send OSC
 });
 
 
-input.on('noteon', function (msg) {//recive midi keys and send to osc
+input.on('noteon', function (msg) {//receive midi keys and send to osc
 
   if (msg.note >= 0 && msg.note <= 7) {
     udpPort.send({
@@ -336,7 +336,7 @@ input.on('noteon', function (msg) {//recive midi keys and send to osc
   }
 });
 
-input.on('noteoff', function (msg) {//recive midi keys and send to osc
+input.on('noteoff', function (msg) {//receive midi keys and send to osc
 
   if (msg.note >= 0 && msg.note <= 7) {
     udpPort.send({
