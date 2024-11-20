@@ -1,23 +1,12 @@
-# ma3apcmini
-Akai apc mini mk2  control MA3 via OSC
+# apcminiremote_ma3
+Akai APC mini MKll remote control MA3 via OSC
 
-Download and install NodeJS version 14.17 from https://nodejs.org/dist/v14.17.0/node-v14.17.0-x64.msi
+NodeJS version 14.17: https://nodejs.org/dist/v14.17.0/node-v14.17.0-x64.msi
 
-Download my archive
+Start script
 
-open folder
+Start plugin
 
-change default tool to open .js file to node.exe (from nodejs )
+check osc in/out interface is ether on local (127.0.0.1) or remotecontrol (e.g. 192.xxx.xxx.xxx) ip adress
 
-Run code double click
-
-copy and load my  ma3 demo show
-
-start plugin
-
-ALL WORK! :D
-
-
-chect osc in/out interface is loop local 127.0.0.1
-
-chect - session is start
+check if session is started
